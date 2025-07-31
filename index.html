@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<!--
+  A simple Telegram Mini App for a yes/no prediction market built on TON.
+  Users can connect their TON wallets via TonConnect, place bets on a
+  question and claim winnings once the market is resolved.  The app
+  automatically adapts to the current Telegram theme by using CSS
+  variables exposed through the Mini App API【266470416382491†L620-L633】【266470416382491†L892-L939】.
+-->
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TON Prediction Market</title>
+  <link rel="stylesheet" href="style.css" />
+  <!-- Load TonConnect UI library from a CDN.  This bundle exposes a
+       global `TON_CONNECT_UI` namespace used in app.js. -->
+  <script src="https://unpkg.com/@tonconnect/ui@0.0.4/dist/tonconnect-ui.min.js"></script>
+</head>
+<body>
+  <div id="app">
+    <header>
+      <h1 id="question">Will it rain tomorrow?</h1>
+      <!-- Wallet connect button will be injected here by TonConnect -->
+      <div id="wallet-connect"></div>
+    </header>
+
+    <section id="market">
+      <div class="option" id="yes-option">
+        <span class="label">Yes</span>
+        <button id="yes-btn">Bet Yes</button>
+        <span class="pool" id="yes-pool">0</span>
+      </div>
+      <div class="option" id="no-option">
+        <span class="label">No</span>
+        <button id="no-btn">Bet No</button>
+        <span class="pool" id="no-pool">0</span>
+      </div>
+    </section>
+
+    <section id="claim-section" hidden>
+      <button id="claim-btn">Claim Winnings</button>
+    </section>
+  </div>
+
+  <!-- Load the application logic as an ES module so that we can import
+       helper libraries such as @ton/core directly in JavaScript. -->
+  <script type="module" src="app.js"></script>
+</body>
+</html>
